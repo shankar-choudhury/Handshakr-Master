@@ -14,6 +14,7 @@ def make_ebay_url(item, page_number):
         page_number = 1
     # Use an f-string (formatted string literal) to
     # insert the item into the EBay URL
+    item = item.replace(" ", "+")
     return f'https://www.ebay.com/sch/i.html?_nkw={item}&LH_Complete=1&_ipg=240&_pgn={page_number}'
 
 

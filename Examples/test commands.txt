@@ -1,0 +1,61 @@
+Setup:
+
+One-time setup:
+---------------
+Copy or create tokens file in ~/.scraper/tokens
+
+In PyCharm Terminal:
+----------------------------------------
+export FLASK_APP=scraperserver/server.py
+flask run
+
+In Terminal app (not PyCharm)
+-----------------------------
+
+1) list the cache (should be empty)
+
+curl --header "Authorization:ijjFPzTJdJHwpM5gHa6mpEJD94e0z3suy1iTFgWyBA3m8HWuCdhKrSxTVhuZ2TcrwPgrEomxqmLKHoeYylBKi7PimayQa5tMQ3cU" http://127.0.0.1:5000/list-cache
+
+2) look up a couple of prices
+
+curl --header "Authorization:ijjFPzTJdJHwpM5gHa6mpEJD94e0z3suy1iTFgWyBA3m8HWuCdhKrSxTVhuZ2TcrwPgrEomxqmLKHoeYylBKi7PimayQa5tMQ3cU" http://127.0.0.1:5000/get-price/charizard%20card
+
+curl --header "Authorization:ijjFPzTJdJHwpM5gHa6mpEJD94e0z3suy1iTFgWyBA3m8HWuCdhKrSxTVhuZ2TcrwPgrEomxqmLKHoeYylBKi7PimayQa5tMQ3cU" http://127.0.0.1:5000/get-price/ohtani%20rookie%20card%20bowman
+
+3) list the cache again
+
+curl --header "Authorization:ijjFPzTJdJHwpM5gHa6mpEJD94e0z3suy1iTFgWyBA3m8HWuCdhKrSxTVhuZ2TcrwPgrEomxqmLKHoeYylBKi7PimayQa5tMQ3cU" http://127.0.0.1:5000/list-cache
+
+
+New command - get-items
+-----------------------
+
+curl --header "Authorization:ijjFPzTJdJHwpM5gHa6mpEJD94e0z3suy1iTFgWyBA3m8HWuCdhKrSxTVhuZ2TcrwPgrEomxqmLKHoeYylBKi7PimayQa5tMQ3cU" http://127.0.0.1:5000/get-items/charizard%20card
+
+curl --header "Authorization:ijjFPzTJdJHwpM5gHa6mpEJD94e0z3suy1iTFgWyBA3m8HWuCdhKrSxTVhuZ2TcrwPgrEomxqmLKHoeYylBKi7PimayQa5tMQ3cU" http://127.0.0.1:5000/get-items/ohtani%20rookie%20card%20bowman
+
+
+Graphing commands
+------------------------
+
+curl --header "Authorization:ijjFPzTJdJHwpM5gHa6mpEJD94e0z3suy1iTFgWyBA3m8HWuCdhKrSxTVhuZ2TcrwPgrEomxqmLKHoeYylBKi7PimayQa5tMQ3cU" http://127.0.0.1:5000/graph-item-sales/jackson%20merrill%20rookie%20card%20signed -o prices.png
+
+curl --header "Authorization:ijjFPzTJdJHwpM5gHa6mpEJD94e0z3suy1iTFgWyBA3m8HWuCdhKrSxTVhuZ2TcrwPgrEomxqmLKHoeYylBKi7PimayQa5tMQ3cU" http://127.0.0.1:5000/graph-item-price-histogram/jackson%20merrill%20rookie%20card%20signed -o prices2.png
+
+curl --header "Authorization:ijjFPzTJdJHwpM5gHa6mpEJD94e0z3suy1iTFgWyBA3m8HWuCdhKrSxTVhuZ2TcrwPgrEomxqmLKHoeYylBKi7PimayQa5tMQ3cU" http://127.0.0.1:5000/graph-item-weekly-median-price/jackson%20merrill%20rookie%20card%20signed -o prices3.png
+
+
+Price stats command
+------------------------
+
+curl --header "Authorization:ijjFPzTJdJHwpM5gHa6mpEJD94e0z3suy1iTFgWyBA3m8HWuCdhKrSxTVhuZ2TcrwPgrEomxqmLKHoeYylBKi7PimayQa5tMQ3cU" http://127.0.0.1:5000/get-price-stats/jackson%20merrill%20rookie%20card%20signed
+
+
+With scrape.sh
+-----------------------
+
+./scrape.sh get-items "Charizard EX SV03"
+./scrape.sh get-price-stats "Charizard EX SV03"
+./scrape.sh graph-item-sales "Charizard EX SV03"
+./scrape.sh graph-item-price-histogram "Charizard EX SV03"
+./scrape.sh graph-item-weekly-median-price "Charizard EX SV03"

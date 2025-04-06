@@ -2,12 +2,10 @@
 # scrapercore module
 # Core scraper functionality
 
-from datetime import datetime
-
 import requests
 from ebayscraper import ebay
 from scrapercache import cache
-
+from scrapercore import data
 
 def get_price_page(item, page_number):
     #Map the item name into an EBay URL
@@ -75,3 +73,39 @@ def get_price(item):
 
 def list_cache():
     return cache.enumerate_cache()
+
+
+def get_price_stats(item):
+    ebay_scraper_items = get_items_info(item)
+    if ebay_scraper_items is None:
+        return None
+    ebay_data = data.scraper_result_to_data(ebay_scraper_items)
+    return data.price_stats(ebay_data)
+
+def graph_item_sales(item):
+    ebay_scraper_items = get_items_info(item)
+    if ebay_scraper_items is None:
+        return None
+    ebay_data = data.scraper_result_to_data(ebay_scraper_items)
+    return data.graph_individual_sales(ebay_data, item)
+
+def graph_item_price_histogram(item):
+    ebay_scraper_items = get_items_info(item)
+    if ebay_scraper_items is None:
+        return None
+    ebay_data = data.scraper_result_to_data(ebay_scraper_items)
+    return data.graph_item_price_histogram(ebay_data, item)
+
+def graph_item_price_histogram(item):
+    ebay_scraper_items = get_items_info(item)
+    if ebay_scraper_items is None:
+        return None
+    ebay_data = data.scraper_result_to_data(ebay_scraper_items)
+    return data.graph_item_price_histogram(ebay_data, item)
+
+def graph_item_weekly_median_price(item):
+    ebay_scraper_items = get_items_info(item)
+    if ebay_scraper_items is None:
+        return None
+    ebay_data = data.scraper_result_to_data(ebay_scraper_items)
+    return data.graph_item_weekly_median_price(ebay_data, item)
