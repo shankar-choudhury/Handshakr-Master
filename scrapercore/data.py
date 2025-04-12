@@ -5,12 +5,13 @@
 import numpy as np
 import pandas as pd
 import matplotlib
-matplotlib.use('Agg') #non-interactive plotting backend
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mtick
 import io
 
-def scraper_result_to_data(result):
+def scraper_result_to_data(item, result):
+    result = add_similarity(item, result)
     df = pd.DataFrame(result)
     if df is None:
         return None
@@ -19,9 +20,11 @@ def scraper_result_to_data(result):
 
 def clean_data(df):
     # Filter out percentiles under 10 and over 90 (to remove outliers)
-    lower_bound = df['price'].quantile(.10)
-    upper_bound = df['price'].quantile(.90)
+    lower_bound = df['price'].quantile(.05)
+    upper_bound = df['price'].quantile(.95)
     df = df[(df['price'] >= lower_bound) & (df['price'] <= upper_bound)]
+    # Filter out low similarity results (we want at least 75% of words from query in result)
+    df = df[df['similarity'] >= 0.75]
     # Filter out dates before January 2025 for accurate pricing
     df['date'] = pd.to_datetime(df['date'])
     df = df[df['date'] >= '2025-01-01'].reset_index(drop=True)
@@ -75,3 +78,16 @@ def price_stats(df):
              'mean': df['price'].mean(),
              'min': df['price'].min(),
              'max': df['price'].max()}
+
+def add_similarity(item, results):
+    for r in results:
+        r['similarity'] = similarity(item, r['name'])
+    return results
+
+def similarity(s1, s2):
+    set1 = make_set_from_string(s1)
+    set2 = make_set_from_string(s2)
+    return len(set1.intersection(set2)) / len(set1)
+
+def make_set_from_string(s1):
+    return set(s1.lower().split())

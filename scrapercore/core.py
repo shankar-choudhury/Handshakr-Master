@@ -59,6 +59,10 @@ def get_items_info(item):
         ebay_scraper_items += page_items
     del ebay_scraper_items[1000:]
 
+    # Filter out items with fewer than 75% of the words from the query in the result
+    ebay_scraper_items = data.add_similarity(item, ebay_scraper_items)
+    ebay_scraper_items = [r for r in ebay_scraper_items if r['similarity']>0.75]
+
     #Cache the result for next time
     cache.add_to_cache(item, ebay_scraper_items)
 
@@ -79,33 +83,33 @@ def get_price_stats(item):
     ebay_scraper_items = get_items_info(item)
     if ebay_scraper_items is None:
         return None
-    ebay_data = data.scraper_result_to_data(ebay_scraper_items)
+    ebay_data = data.scraper_result_to_data(item, ebay_scraper_items)
     return data.price_stats(ebay_data)
 
 def graph_item_sales(item):
     ebay_scraper_items = get_items_info(item)
     if ebay_scraper_items is None:
         return None
-    ebay_data = data.scraper_result_to_data(ebay_scraper_items)
+    ebay_data = data.scraper_result_to_data(item, ebay_scraper_items)
     return data.graph_individual_sales(ebay_data, item)
 
 def graph_item_price_histogram(item):
     ebay_scraper_items = get_items_info(item)
     if ebay_scraper_items is None:
         return None
-    ebay_data = data.scraper_result_to_data(ebay_scraper_items)
+    ebay_data = data.scraper_result_to_data(item, ebay_scraper_items)
     return data.graph_item_price_histogram(ebay_data, item)
 
 def graph_item_price_histogram(item):
     ebay_scraper_items = get_items_info(item)
     if ebay_scraper_items is None:
         return None
-    ebay_data = data.scraper_result_to_data(ebay_scraper_items)
+    ebay_data = data.scraper_result_to_data(item, ebay_scraper_items)
     return data.graph_item_price_histogram(ebay_data, item)
 
 def graph_item_weekly_median_price(item):
     ebay_scraper_items = get_items_info(item)
     if ebay_scraper_items is None:
         return None
-    ebay_data = data.scraper_result_to_data(ebay_scraper_items)
+    ebay_data = data.scraper_result_to_data(item, ebay_scraper_items)
     return data.graph_item_weekly_median_price(ebay_data, item)
