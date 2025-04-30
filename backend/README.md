@@ -4,6 +4,8 @@ Please visit [https://handshakr.duckdns.org](https://handshakr.duckdns.org) to i
 
 For documentation, please copy contents of target/reports/apidocs/allclasses-index.html to your machine and then open file in web browser. 
 
+For commit history, please check original repo: https://github.com/shankar-choudhury/handshakr_proto
+
 ## 🛠 Tech Stack
 **Backend:** Spring Boot 3.4.3 (Java 21)  
 **Database:** PostgreSQL  
