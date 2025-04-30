@@ -2,6 +2,8 @@
 
 Please visit [https://handshakr.duckdns.org](https://handshakr.duckdns.org) to interact with the deployed application.
 
+For documentation, please copy contents of target/reports/apidocs/allclasses-index.html to your machine and then open file in web browser. 
+
 ## 🛠 Tech Stack
 **Backend:** Spring Boot 3.4.3 (Java 21)  
 **Database:** PostgreSQL  
