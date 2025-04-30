@@ -1,0 +1,16 @@
+com.handshakr.handshakr_prototype
+com.handshakr.handshakr_prototype.controller
+com.handshakr.handshakr_prototype.exceptions
+com.handshakr.handshakr_prototype.exceptions.general
+com.handshakr.handshakr_prototype.exceptions.handshake
+com.handshakr.handshakr_prototype.exceptions.security
+com.handshakr.handshakr_prototype.exceptions.user
+com.handshakr.handshakr_prototype.handshake
+com.handshakr.handshakr_prototype.handshake.dto
+com.handshakr.handshakr_prototype.response
+com.handshakr.handshakr_prototype.security
+com.handshakr.handshakr_prototype.security.auth
+com.handshakr.handshakr_prototype.security.filter
+com.handshakr.handshakr_prototype.user
+com.handshakr.handshakr_prototype.user.dto
+com.handshakr.handshakr_prototype.utils
