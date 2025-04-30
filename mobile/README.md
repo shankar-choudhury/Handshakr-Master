@@ -1,6 +1,6 @@
 # Handshakr Mobile
 
-The mobile front-end for the Handshakr encrypted deal-making platform.  
+The mobile front-end for the Handshakr encrypted deal-making platform.  Note that development (specifically the commit history) can be found on [this stand-alone repo](https://github.com/giltwist/Handshakr-mobile)
 
 ## Installation
 
