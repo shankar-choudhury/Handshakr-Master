@@ -2,7 +2,7 @@
 
 Please visit [https://handshakr.duckdns.org](https://handshakr.duckdns.org) to interact with the deployed application.
 
-For documentation, please copy contents of target/reports/apidocs/allclasses-index.html to your machine and then open file in web browser. 
+For documentation, please copy contents of backend/apidocs to your machine and then open the "allclasses-index.html" file in web browser. 
 
 For commit history, please check original repo: https://github.com/shankar-choudhury/handshakr_proto
 
