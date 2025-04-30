@@ -131,6 +131,9 @@ Set the following:
 mvn test
 ```
 
+### Documentation
+Copy contents of target/reports/apidocs/allclasses-index.html and open in web browser to view dodumentation of web server
+
 ---
 
 ## 📄 License
