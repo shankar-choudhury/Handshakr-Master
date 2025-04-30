@@ -16,7 +16,9 @@ The mobile front-end for the Handshakr encrypted deal-making platform.
 4. On your first login with the app, you will need to grant bluetooth permission
 5. If bluetooth is not enabled, you will need to enable bluetooth
 6. Use the slider to choose whether you are making an offer or receiving an offer
+   
 	A. If receiving, simply wait for a nearby user to make an offer then accept or reject
+
 	B. If sending, fill out the form.  Then, select a nearby user to make your offer.
 
 ## Help
