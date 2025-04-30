@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/permButton"
+        android:layout_width="169dp"
+        android:layout_height="52dp"
+        android:backgroundTint="@color/DarkBlue"
+        android:onClick="getBTperms"
+        android:text="Request BT Perms"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.065"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/enableButton"
+        android:layout_width="166dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="4dp"
+        android:backgroundTint="@color/DarkBlue"
+        android:onClick="enableBT"
+        android:text="Enable BT"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.938"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <EditText
+        android:id="@+id/dealDetail"
+        android:layout_width="333dp"
+        android:layout_height="227dp"
+        android:background="@android:drawable/editbox_dropdown_light_frame"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Details of deal"
+        android:inputType="textMultiLine"
+        android:scrollbars="vertical"
+        android:textColor="@color/black"
+        android:textColorHint="@color/DarkBlue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dealTitle"
+        app:layout_constraintVertical_bias="0.112"
+        tools:text="@tools:sample/lorem/random" />
+
+    <Button
+        android:id="@+id/send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@color/DarkBlue"
+        android:onClick="doDiscover"
+        android:text="Send Offer"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dealDetail"
+        app:layout_constraintVertical_bias="0.586" />
+
+    <EditText
+        android:id="@+id/dealTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="340dp"
+        android:background="@android:drawable/editbox_background"
+        android:ems="10"
+        android:hint="Deal Title"
+        android:inputType="text"
+        android:lines="1"
+        android:maxLines="1"
+        android:minHeight="48dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/DarkBlue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.194"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mode"
+        tools:text="@tools:sample/lorem" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="428dp"
+        android:layout_height="108dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/handshakr_banner" />
+
+    <Switch
+        android:id="@+id/mode"
+        style="?attr/materialSwitchStyle"
+        android:layout_width="213dp"
+        android:layout_height="42dp"
+        android:autoSizeTextType="none"
+        android:fontFamily="serif"
+        android:onClick="doToggle"
+        android:scaleY="2"
+        android:showText="true"
+        android:switchMinWidth="175dp"
+        android:switchTextAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textAlignment="center"
+        android:textColor="@color/DarkBlue"
+        android:textOff="Make Offers"
+        android:textOn="Get Offers"
+        android:textScaleX="1.5"
+        android:textSize="12sp"
+        android:thumb="@android:drawable/checkbox_off_background"
+        android:thumbTextPadding="15dp"
+        android:thumbTint="@color/DarkBlue"
+        android:trackTint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userwelcome" />
+
+    <EditText
+        android:id="@+id/userwelcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        android:clickable="false"
+        android:contextClickable="false"
+        android:editable="false"
+        android:ems="10"
+        android:enabled="false"
+        android:focusable="false"
+        android:inputType="text"
+        android:text="Welcome"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
