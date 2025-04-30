@@ -2,12 +2,58 @@
 
 Please visit [https://handshakr.duckdns.org](https://handshakr.duckdns.org) to interact with the deployed application.
 
+For documentation, please copy contents of target/reports/apidocs/allclasses-index.html to your machine and then open file in web browser. 
+
+For commit history, please check original repo: https://github.com/shankar-choudhury/handshakr_proto
+
 ## 🛠 Tech Stack
 **Backend:** Spring Boot 3.4.3 (Java 21)  
 **Database:** PostgreSQL  
 **Security:** JWT, PBKDF2 password encoding, CSRF tokens  
 **Testing:** Testcontainers, JUnit 5  
 **Tools:** Lombok, Hibernate Validator
+
+---
+
+## 📦 Tech Stack & Dependencies
+
+### Core Frameworks
+
+| Dependency | Purpose | Version |
+|-----------|---------|---------|
+| [Spring Boot](https://spring.io/projects/spring-boot) | Application framework | 3.4.3 |
+| [Spring Security](https://spring.io/projects/spring-security) | Authentication/Authorization | 6.4.3 |
+| [Spring Data JPA](https://spring.io/projects/spring-data-jpa) | Database ORM | 3.2.5 |
+| [Spring Validation](https://docs.spring.io/spring-framework/reference/core/validation.html) | Request validation | 6.1.6 |
+
+### Security
+
+| Dependency | Purpose | Version |
+|-----------|---------|---------|
+| [JJWT](https://github.com/jwtk/jjwt) | JWT token generation/validation | 0.12.6 |
+| PBKDF2 | Password hashing | (Spring-managed) |
+
+### Database
+
+| Dependency | Purpose | Version |
+|-----------|---------|---------|
+| [PostgreSQL Driver](https://jdbc.postgresql.org/) | Database driver | 42.7.3 |
+| [Hibernate](https://hibernate.org/orm/) | JPA implementation | 6.4.4 |
+
+### Utilities
+
+| Dependency | Purpose | Version |
+|-----------|---------|---------|
+| [Lombok](https://projectlombok.org/) | Boilerplate reduction | 1.18.30 |
+| [Jakarta Validation](https://jakarta.ee/specifications/bean-validation/3.0/) | Input validation | 3.0.2 |
+
+### Testing
+
+| Dependency | Purpose | Version |
+|-----------|---------|---------|
+| [JUnit 5](https://junit.org/junit5/) | Unit testing | 5.10.2 |
+| [Testcontainers](https://www.testcontainers.org/) | PostgreSQL integration tests | 1.19.7 |
+| [Mockito](https://site.mockito.org/) | Mocking framework | 5.10.0 |
 
 ---
 
@@ -22,23 +68,23 @@ Please visit [https://handshakr.duckdns.org](https://handshakr.duckdns.org) to i
 
 ## 📚 API Documentation
 
-### 🔐 Authentication (`/auth`)
+### 🔐 Authentication (/auth)
 | Endpoint | Method | Description | Request Body Example |
 |----------|--------|-------------|-----------------------|
-| `/register` | POST | Register a new user | `{ "email": "a@b.com", "username": "user", "password": "pass" }` |
-| `/login` | POST | Login (returns JWT cookie + CSRF) | `{ "username": "user", "password": "pass" }` |
+| /register | POST | Register a new user | `{ "email": "a@b.com", "username": "user", "password": "pass" }` |
+| /login | POST | Login (returns JWT cookie + CSRF) | `{ "username": "user", "password": "pass" }` |
 
-### 🤝 Handshake Management (`/handshake`)
+### 🤝 Handshake Management (/handshake)
 | Endpoint | Method | Description |
 |----------|--------|-------------|
-| `/create-handshake` | POST | Initiate a handshake |
-| `/accept-handshake?name={name}` | PUT | Accept a handshake |
+| /create-handshake | POST | Initiate a handshake |
+| /accept-handshake?name={name} | PUT | Accept a handshake |
 
-### 👤 User Management (`/users`)
+### 👤 User Management (/users)
 | Endpoint | Method | Description |
 |----------|--------|-------------|
-| `/me` | GET | Get current user’s details |
-| `/me/setPublicKey` | POST | Set user’s public key |
+| /me | GET | Get current user’s details |
+| /me/setPublicKey | POST | Set user’s public key |
 
 **Response Format:**
 ```json
@@ -63,8 +109,8 @@ Please visit [https://handshakr.duckdns.org](https://handshakr.duckdns.org) to i
 
 ### CORS
 Allowed origins:
-- `https://handshakr.duckdns.org`
-- `http://localhost:3000`
+- https://handshakr.duckdns.org
+- http://localhost:3000
 
 ---
 
