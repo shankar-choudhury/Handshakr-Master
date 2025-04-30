@@ -1,18 +1,21 @@
-# cache.py
-# scrapercache module
-# Our initial implementation is a simple Python in-memory dictionary.
-# To scale this, we would replace with a NoSQL key/value store database like Redis.
+"""scrapercache package - cache.py
+
+Our initial implementation is a simple Python in-memory dictionary.
+To scale this, we would replace with a NoSQL key/value store database like Redis.
+"""
 
 import datetime
 
 expiration_interval = datetime.timedelta(days=1)
 cache_dict = dict()
 
-# See if the cache contains 'query' request
-# Returns None if it doesn't or it was expired
-# Returns cached data if it was cached
-# If entry exists but was expired, it is removed.
+
 def lookup(query):
+    """
+    See if the cache contains 'query' request. If entry exists but was expired, it is removed.
+    :param query: Query to look up.
+    :return: Cached data or None if cache miss.
+    """
     global cache_dict
     if query in cache_dict:
         entry = cache_dict[query]
@@ -26,21 +29,33 @@ def lookup(query):
             del cache_dict[query]
     return None
 
-# Add an entry to the cache
-# Overwrite any existing entry
-# (usually won't happen since we check cache first)
+
 def add_to_cache(query, value):
+    """
+    Add an entry to the cache. Overwrite any existing entry
+    :param query: Query to use as our caching key.
+    :param value: Data to cache.
+    :return: None
+    """
     global cache_dict
     entry = (datetime.datetime.now(), value)
     cache_dict[query] = entry
 
-# Return the cache contents for debugging/diagnosis
+
 def enumerate_cache():
+    """
+    Return the cache contents for debugging/diagnosis.
+    :return: Cache contents as a dictionary.
+    """
     # Just return the underlying dictionary itself
     global cache_dict
     return cache_dict
 
-# Clear the cache
+
 def clear_cache():
+    """
+    Clear the cache.
+    :return: None
+    """
     global cache_dict
     cache_dict.clear()

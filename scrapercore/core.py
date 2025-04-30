@@ -1,14 +1,23 @@
-# core.py
-# scrapercore module
-# Core scraper functionality
+"""scrapercore package - core.py
+
+Core scraper functionality.
+Calls ebayscraper, scrapercache, scrapercore.
+Called by scraperserver.
+"""
 
 import requests
 from ebayscraper import ebay
 from scrapercache import cache
 from scrapercore import data
 
+
 def get_price_page(item, page_number):
-    #Map the item name into an EBay URL
+    """
+    Get prices for a given item.
+    :param item: Item string to search for.
+    :param page_number: Page number (default 1)
+    :return: Array of prices.
+    """
     ebay_url = ebay.make_ebay_url(item, page_number)
     if ebay_url is None:
         return None
@@ -24,7 +33,12 @@ def get_price_page(item, page_number):
 
 
 def get_items_page(item, page_number):
-    #Map the item name into an EBay URL
+    """
+    Get array of items dictionaries for a given item string (off a single page).
+    :param item: Item string to search for.
+    :param page_number: Page number (default 1)
+    :return: Array of items for this page of results (date, price, condition, name).
+    """
     ebay_url = ebay.make_ebay_url(item, page_number)
     if ebay_url is None:
         return None
@@ -40,6 +54,11 @@ def get_items_page(item, page_number):
 
 
 def get_items_info(item):
+    """
+    Get array of items dictionaries for a given item string, maximum 1000 items.
+    :param item: Item string to search for.
+    :return: Array of items (date, price, condition, name).
+    """
     #First lookup in the cache
     cached_response = cache.lookup(item)
     if not cached_response is None:
@@ -71,43 +90,68 @@ def get_items_info(item):
 
 
 def get_price(item):
+    """
+    Get array of prices for a given item string, maximum 1000 items.
+    :param item: Item string to search for.
+    :return: Array of prices.
+    """
     items = get_items_info(item)
     return [d['price'] for d in items if 'price' in d]
 
 
 def list_cache():
+    """
+    Return the cache contents as a dictionary.
+    :return: Dictionary of cache contents.
+    """
     return cache.enumerate_cache()
 
 
 def get_price_stats(item):
+    """
+    Return stats (median, mean, min, max) for an item.
+    :param item: Item string to search for.
+    :return: Dictionary containing median, mean, min, max for item.
+    """
     ebay_scraper_items = get_items_info(item)
     if ebay_scraper_items is None:
         return None
     ebay_data = data.scraper_result_to_data(item, ebay_scraper_items)
     return data.price_stats(ebay_data)
 
+
 def graph_item_sales(item):
+    """
+    Generates a graph image for 1000 most recent item sales scattered price/date.
+    :param item: Item string to search for.
+    :return: PNG image data.
+    """
     ebay_scraper_items = get_items_info(item)
     if ebay_scraper_items is None:
         return None
     ebay_data = data.scraper_result_to_data(item, ebay_scraper_items)
     return data.graph_individual_sales(ebay_data, item)
 
+
 def graph_item_price_histogram(item):
+    """
+    Generates a graph image for sales histogram price distribution of 1000 recent item sales.
+    :param item: Item string to search for.
+    :return: PNG image data.
+    """
     ebay_scraper_items = get_items_info(item)
     if ebay_scraper_items is None:
         return None
     ebay_data = data.scraper_result_to_data(item, ebay_scraper_items)
     return data.graph_item_price_histogram(ebay_data, item)
 
-def graph_item_price_histogram(item):
-    ebay_scraper_items = get_items_info(item)
-    if ebay_scraper_items is None:
-        return None
-    ebay_data = data.scraper_result_to_data(item, ebay_scraper_items)
-    return data.graph_item_price_histogram(ebay_data, item)
 
 def graph_item_weekly_median_price(item):
+    """
+    Generates a graph image for weekly median price (moving average) for an item.
+    :param item: Item string to search for.
+    :return: PNG image data.
+    """
     ebay_scraper_items = get_items_info(item)
     if ebay_scraper_items is None:
         return None

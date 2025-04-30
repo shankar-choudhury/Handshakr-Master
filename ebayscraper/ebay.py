@@ -1,11 +1,21 @@
-# ebay.py
-# ebayscraper module
-# EBay scraper functionality
+"""ebayscraper package - ebay.py
+
+EBay specific scraper code.
+Called by scrapercore module (core.py).
+Calls BeautifulSoup.
+"""
 
 from bs4 import BeautifulSoup
 from dateutil import parser
 
+
 def make_ebay_url(item, page_number):
+    """
+    Return an EBay completed sales URL given an item and a page number (range of items).
+    :param item: Item to query eBay for (example "Jordan 1")
+    :param page_number: Page number to return a range of results
+    :return: Formatted URL.
+    """
     if item is None:
         return None
     if not item:
@@ -19,6 +29,11 @@ def make_ebay_url(item, page_number):
 
 
 def parse_ebay_page_and_extract_prices(html_source):
+    """
+    Parses HTML source from EBay and returns prices.
+    :param html_source: HTML source string from EBay completed auction.
+    :return: Array of prices (floats)
+    """
     soup = BeautifulSoup(html_source, "html.parser")
     price_spans = soup.find_all("span", class_="s-item__price")
     prices = []
@@ -38,6 +53,11 @@ def parse_ebay_page_and_extract_prices(html_source):
 
 
 def parse_price(price_string):
+    """
+    Parses a single price from a string to a float.
+    :param price_string: String containing a price with leading currency symbol.
+    :return: Floating point price.
+    """
     # First we strip the currency symbol ($)
     price_string = price_string.strip('$')
     try:
@@ -49,6 +69,11 @@ def parse_price(price_string):
 
 
 def parse_ebay_page_and_extract_items(html_source):
+    """
+    Parses EBay HTML to extract items array
+    :param html_source: HTML source string from EBay completed auction.
+    :return: Array of items (dictionary of date, price, name, condition)
+    """
     items = []
     i = 0
     soup = BeautifulSoup(html_source, "html.parser")
